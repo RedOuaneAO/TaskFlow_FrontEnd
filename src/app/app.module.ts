@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './sharedComponent/component/nav-bar/nav-bar.component';
 import { SideBarComponent } from './sharedComponent/component/side-bar/side-bar.component';
+import { TasksReducers } from './ngrx/task/task.reducer';
+import { TasksEffects } from './ngrx/task/task.effects';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,8 @@ import { SideBarComponent } from './sharedComponent/component/side-bar/side-bar.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([])
+    StoreModule.forRoot({tasksReducers: TasksReducers}, {}),
+    EffectsModule.forRoot([TasksEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
