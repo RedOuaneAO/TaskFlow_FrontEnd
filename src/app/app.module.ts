@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,7 @@ import { NavBarComponent } from './sharedComponent/component/nav-bar/nav-bar.com
 import { SideBarComponent } from './sharedComponent/component/side-bar/side-bar.component';
 import { TasksReducers } from './ngrx/task/task.reducer';
 import { TasksEffects } from './ngrx/task/task.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TasksEffects } from './ngrx/task/task.effects';
     AppRoutingModule,
     FormsModule,
     StoreModule.forRoot({tasksReducers: TasksReducers}, {}),
-    EffectsModule.forRoot([TasksEffects])
+    EffectsModule.forRoot([TasksEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]
