@@ -1,1 +1,43 @@
-<p>add-task works!</p>
+<div class="d-flex justify-content-center">
+    <div class=" border shadow d-flex justify-content-center" style="width: 700px;">
+        <!-- @if(errorMessages){
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error! </strong> {{errorMessages}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            } -->
+        <form class="text-center border border-light p-5"  (ngSubmit)="addTask()">
+            <p class="h4 mb-4">Add Task</p>
+            <div class="row">
+                <div class="col-6">
+                    <label for="taskName" class="fw-bold">Task Name :</label>
+                    <input type="text" id="taskName" class="form-control mb-4" name="name" [(ngModel)]="formData.name" placeholder="Task Name">
+                    <label for="tags" class="fw-bold">Tags:</label>
+                    <!-- <p>Option 1 <input type="checkbox"  required (change)="CheckedTags(tags.id)"></p> -->
+                    <div class="dropdown">
+                        <button class="btn form-control dropdown-toggle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Tags
+                        </button>
+                        <ul class="dropdown-menu form-control text-center">
+                          <li> <p>Option 1 <input type="checkbox"  required (change)="CheckedTags(1)"></p></li>
+                          <li> <p>Option 2 <input type="checkbox"  required (change)="CheckedTags(2)"></p></li>
+                          <li> <p>Option 3 <input type="checkbox"  required (change)="CheckedTags(3)"></p></li>
+                        </ul>
+                      </div>
+                </div>
+                <div class="col-6">
+                    <label for="startDate" class="fw-bold">Start Date :</label>
+                    <input type="date" id="startDate" class="form-control mb-4" [(ngModel)]="formData.startDate" name="startDate" placeholder="Start Date">
+                    <label for="endDate" class="fw-bold">End Date :</label>
+                    <input type="date" id="endDate" class="form-control mb-4" [(ngModel)]="formData.endDate" name="endDate" placeholder="End Date">
+                </div>
+                <div class="col-12">
+                    <label for="description" class="fw-bold">Description :</label>
+                    <!-- <input type="text" id="description" class="form-control mb-4" [(ngModel)]="formData.description" name="description" placeholder="description"> -->
+                    <textarea name="description" class="form-control mb-4" [(ngModel)]="formData.description" id="description" cols="30" rows="10" style="height: 100px"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block text-white px-5" type="submit">Add</button>
+        </form>
+    </div>
+</div>

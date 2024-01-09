@@ -23,12 +23,8 @@ task: TaskInterface={
 constructor(private store:Store<AppState>){}
 
   ngOnInit(){
-    this.store.dispatch(loadTasks())
-    // console.log(this.store)
-    
-    console.log(this.store.pipe(select(allTasksSelector)));
-    
-    // console.log(this.tasks$)
+    this.store.dispatch(loadTasks()) 
+    this.tasks$ = this.store.pipe(select(allTasksSelector));
   }
   getAllTasks(){
 

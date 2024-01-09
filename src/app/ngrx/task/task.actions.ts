@@ -13,3 +13,7 @@ export const LoadTasksFailure = createAction(
     "[Tasks] Load Tasks Failure",
     props<{error: string}>()
 );
+export const AddTask = createAction(
+    "[Tasks] Add Task",
+    props<{task: TaskInterface}>()
+);
