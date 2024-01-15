@@ -15,21 +15,32 @@
                 <th scope="col">startDate</th>
                 <th scope="col">endDate</th>
                 <th scope="col">assignedTo</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
                 @for (task of tasks$ |async; track $index) {
                     <tr>
-                        <td>1</td>
+                        <td>{{task.id}}</td>
                         <td>{{task.description}}</td>
                         <td>{{task.startDate}}</td>
                         <td>{{task.endDate}}</td>
                         <td>{{task.assignedTo}}</td>
+                        <td>
+                            <!-- <button class="btn btn-primary">Assign</button> -->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Assign
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @for (user of users$ |async; track $index) {
+                                    <li><button class="dropdown-item btn" href="#" (click)="assignTo(user.id,task.id)">{{user.userName}}</button></li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
-                    }
-                    <div *ngFor="let task of tasks$ | async">
-                        <p>{{ task.description }}</p>
-                      </div>
+                }
             </tbody> 
         </table>
     </div>

@@ -17,6 +17,8 @@ import { SideBarComponent } from './sharedComponent/component/side-bar/side-bar.
 import { TasksReducers } from './ngrx/task/task.reducer';
 import { TasksEffects } from './ngrx/task/task.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { UsersReducers } from './ngrx/user/user.reducer';
+import { UsersEffects } from './ngrx/user/user.effects';
 
 @NgModule({
   declarations: [
@@ -34,8 +36,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({tasksReducers: TasksReducers}, {}),
-    EffectsModule.forRoot([TasksEffects]),
+    StoreModule.forRoot({tasksReducers: TasksReducers,userReducers : UsersReducers}, {}),
+    EffectsModule.forRoot([TasksEffects ,UsersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],

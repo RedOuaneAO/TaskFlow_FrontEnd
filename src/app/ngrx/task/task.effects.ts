@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { TaskService } from "../../task/services/task.service";
 import { EMPTY, catchError, map, mergeMap, of } from "rxjs";
-import { AddTask, LoadTasksFailure, LoadTasksSuccess, loadTasks } from "./task.actions";
+import { AddTask, AssignTask, LoadTasksFailure, LoadTasksSuccess, loadTasks } from "./task.actions";
 
 @Injectable()
 export class TasksEffects {
@@ -16,7 +16,7 @@ export class TasksEffects {
             ofType(loadTasks),
             mergeMap(()=>this.taskService.getAllTasks().pipe(
                 map(val=>LoadTasksSuccess({tasks:val})),
-                catchError(err =>of(LoadTasksFailure({error :err.message})))
+                catchError(err =>of(LoadTasksFailure({error :err.error.message})))
             ))
         ));
 
@@ -24,7 +24,15 @@ export class TasksEffects {
         ofType(AddTask),
         mergeMap((actions) => this.taskService.addTask(actions.task).pipe(
             map(value => console.log(value)),
-            catchError(err => EMPTY)
+            catchError(err =>of(LoadTasksFailure({error :err.error.message})))
+        ))
+        ));
+    assignTask = createEffect((): any => this.action$.pipe(
+        ofType(AssignTask),
+        mergeMap((actions) => this.taskService.assignTask(actions.assignment).pipe(
+            map(value => console.log(value)),
+            // catchError(err => EMPTY)
+            catchError(err =>of(LoadTasksFailure({error :err.error.message})))
         ))
         ));
 

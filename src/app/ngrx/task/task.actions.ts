@@ -17,3 +17,7 @@ export const AddTask = createAction(
     "[Tasks] Add Task",
     props<{task: TaskInterface}>()
 );
+export const AssignTask = createAction(
+    "[Tasks] Assign Task",
+    props<{assignment: any}>()
+);
