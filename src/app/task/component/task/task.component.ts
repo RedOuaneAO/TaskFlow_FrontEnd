@@ -41,7 +41,6 @@ constructor(private store:Store<AppState>){}
   assignTo(userId:number,taskId:number){
     this.assignment['taskId']=taskId
     this.assignment['assignedTo']=userId
-    console.log(this.assignment)
     this.store.dispatch(AssignTask({assignment: this.assignment}))
   }
 }

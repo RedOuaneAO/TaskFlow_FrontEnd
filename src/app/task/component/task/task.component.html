@@ -1,5 +1,11 @@
-<div class="d-flex justify-content-end py-4">
-    <a  class="btn btn-outline-primary" routerLink="/add-task">Add New task</a>
+<div class="d-flex justify-content-between py-4">
+    <div class="d-flex">
+        <p class="text-danger border p-2 ">Delete Tokens</p>
+        <p class="text-success ms-5 border p-2 ">Update Tokens</p>
+    </div>
+    <div>
+        <a  class="btn btn-outline-primary" routerLink="/add-task">Add New task</a>
+    </div>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3 ">
@@ -28,7 +34,7 @@
                         <td>{{task.assignedTo}}</td>
                         <td>
                             <!-- <button class="btn btn-primary">Assign</button> -->
-                            <div class="dropdown">
+                            <div class="dropdown d-flex" >
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Assign
                                 </button>
@@ -37,6 +43,9 @@
                                     <li><button class="dropdown-item btn" href="#" (click)="assignTo(user.id,task.id)">{{user.userName}}</button></li>
                                     }
                                 </ul>
+                                <button class="btn btn-danger ms-1" type="button">
+                                Delete
+                                </button>
                             </div>
                         </td>
                     </tr>

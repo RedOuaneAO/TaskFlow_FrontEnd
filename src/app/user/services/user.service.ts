@@ -12,4 +12,7 @@ export class UserService {
   getAllUsers(): Observable<any> {
     return this.http.get(environment.apiURL+'users');
   }
+  // getUserTokens(): Observable<any> {
+  //   return this.http.get(environment.apiURL+'tokens');
+  // }
 }
