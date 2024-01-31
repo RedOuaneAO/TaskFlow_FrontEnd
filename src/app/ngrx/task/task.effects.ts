@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { TaskService } from "../../task/services/task.service";
 import { EMPTY, catchError, map, mergeMap, of } from "rxjs";
-import { AddTask, AddTaskSuccess, AssignTask, AssignTaskSuccess, LoadTasksFailure, LoadTasksSuccess, loadTasks } from "./task.actions";
+import { AddTask, AddTaskSuccess, AssignTask, AssignTaskSuccess, DeleteTask, DeleteTaskSuccess, LoadTasksFailure, LoadTasksSuccess, loadTasks } from "./task.actions";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 
@@ -44,5 +44,14 @@ export class TasksEffects {
             catchError(err =>of(LoadTasksFailure({error :err.error.message})))
         ))
         ));
-
+    deleteTask = createEffect((): any => this.action$.pipe(
+        ofType(DeleteTask),
+        mergeMap((actions) => this.taskService.taskModification(actions.task).pipe(
+            map(value => {
+                // this.store.dispatch(loadTasks());
+                return DeleteTaskSuccess({ task: value }); 
+            }),
+            catchError(err =>of(LoadTasksFailure({error :err.error.message})))
+        ))
+));
 }

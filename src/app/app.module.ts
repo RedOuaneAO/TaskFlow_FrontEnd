@@ -19,6 +19,7 @@ import { TasksEffects } from './ngrx/task/task.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { UsersReducers } from './ngrx/user/user.reducer';
 import { UsersEffects } from './ngrx/user/user.effects';
+import { TokensReducers } from './ngrx/token/token.reducer';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { UsersEffects } from './ngrx/user/user.effects';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({tasksReducers: TasksReducers,userReducers : UsersReducers}, {}),
+    StoreModule.forRoot({tasksReducers: TasksReducers,userReducers : UsersReducers,tokensReducers : TokensReducers}, {}),
     EffectsModule.forRoot([TasksEffects ,UsersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],

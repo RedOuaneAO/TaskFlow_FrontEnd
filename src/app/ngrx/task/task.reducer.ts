@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { TasksState } from "./taskState";
-import {  AddTask, AssignTask, LoadTasksFailure, LoadTasksSuccess, loadTasks } from "./task.actions";
+import {  AddTask, AssignTask, DeleteTask, DeleteTaskSuccess, LoadTasksFailure, LoadTasksSuccess,  loadTasks } from "./task.actions";
 
 const initialState: TasksState = {
   tasks: [],
@@ -34,4 +34,32 @@ export const TasksReducers = createReducer(
     isLoading: false,                //i am here when i try to change or assign a task to a user
     users: [...state.tasks, assignment]
   })),
+  on(DeleteTask, (state, {task}) => ({
+    ...state,
+    isLoading: true,               
+    any: [...state.tasks, task]
+  })),
+
+
+
+
+  // on(DeleteTaskSuccess, (state, { task }) => ({
+  //   ...state,
+  //   isLoading: false
+  // })),
+
+  // on(LoadTokens, (state) => ({
+  //   ...state,
+  //   isLoading: true
+  // })),
+  // on(LoadTokensSuccess, (state, { tokens }) => ({
+  //   ...state,
+  //   tokens: tokens,
+  //   isLoading: false
+  // })),
+  // on(LoadTokensFailure, (state, { error }) => ({
+  //   ...state,
+  //   isLoading: false,
+  //   error: error
+  // })),
 );

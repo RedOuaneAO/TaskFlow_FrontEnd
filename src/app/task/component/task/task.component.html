@@ -1,7 +1,12 @@
 <div class="d-flex justify-content-between py-4">
     <div class="d-flex">
-        <p class="text-danger border p-2 ">Delete Tokens</p>
-        <p class="text-success ms-5 border p-2 ">Update Tokens</p>
+        @for (token of tokens$ |async; track $index) {
+            @if (token.tokenType =="DELETE") {
+                <p class="text-danger border p-2 ">Delete Tokens {{token.number}}</p>
+            }@else {
+                <p class="text-success ms-5 border p-2 ">Update Tokens {{token.number}}</p>
+            }
+        }
     </div>
     <div>
         <a  class="btn btn-outline-primary" routerLink="/add-task">Add New task</a>
@@ -43,8 +48,11 @@
                                     <li><button class="dropdown-item btn" href="#" (click)="assignTo(user.id,task.id)">{{user.userName}}</button></li>
                                     }
                                 </ul>
-                                <button class="btn btn-danger ms-1" type="button">
+                                <button class="btn btn-danger ms-1" type="button" (click)="deleteTask(task.id)">
                                 Delete
+                                </button>
+                                <button class="btn btn-success ms-1" type="button">
+                                update
                                 </button>
                             </div>
                         </td>

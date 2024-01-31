@@ -19,4 +19,7 @@ export class TaskService {
   assignTask(assignment: TaskInterface): Observable<TaskInterface> {
     return this.http.put<TaskInterface>(environment.apiURL+'assign' ,assignment);
   }
+  taskModification(task:Object):Observable<any>{
+    return this.http.post(environment.apiURL+'task_change',task);
+  }
 }

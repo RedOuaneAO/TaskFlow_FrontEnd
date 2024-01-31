@@ -23,7 +23,7 @@ user: UserInterface={
 constructor(private store:Store<AppState>){}
 
   ngOnInit(){
-    this.store.dispatch(loadUsers()) 
+    this.store.dispatch(loadUsers());
     console.log(this.users$)
   }
 }

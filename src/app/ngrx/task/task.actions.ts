@@ -2,8 +2,6 @@ import { createAction ,props } from "@ngrx/store";
 import { TaskInterface } from "../../task/model/TaskInterface";
 
 export const loadTasks = createAction("[Tasks] Load Tasks");
-
-
 export const LoadTasksSuccess = createAction(
     "[Tasks] Load Tasks Success",
     props<{tasks: TaskInterface[]}>()
@@ -28,3 +26,12 @@ export const AssignTaskSuccess = createAction(
     '[Task] Assign Task Success',
     props<{ task: TaskInterface }>()
 );
+export const DeleteTask =createAction(
+    "[Task] Delete Task" ,
+    props<{task : Object}>()
+);
+export const DeleteTaskSuccess =createAction(
+    "[Task] Delete Task Success" ,
+    props<{task : Object}>()
+);
+

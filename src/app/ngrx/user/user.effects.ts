@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { UserService } from "../../user/services/user.service";
-import { LoadUsersFailure, LoadUsersSuccess, loadUsers } from "./user.actions";
+import { LoadTokens, LoadTokensFailure, LoadTokensSuccess, LoadUsersFailure, LoadUsersSuccess, loadUsers } from "./user.actions";
 
 @Injectable()
 export class UsersEffects {
@@ -19,5 +19,15 @@ export class UsersEffects {
                 catchError(err =>of(LoadUsersFailure({error :err.error.message})))
             ))
         ));
+
+    getUserTokens=createEffect(
+        ():any=>this.action$.pipe(
+            ofType(LoadTokens),
+            mergeMap(()=>this.userService.getUserTokens().pipe(
+                map(val=>LoadTokensSuccess({tokens:val})),
+                catchError(err=>of(LoadTokensFailure({error :err.error.message})))
+            ))
+        )
+    )
 
 }
